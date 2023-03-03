@@ -2,17 +2,17 @@ import { IndexedTx, StargateClient } from "@cosmjs/stargate"
 import { MsgSend } from "cosmjs-types/cosmos/bank/v1beta1/tx"
 import { Tx } from "cosmjs-types/cosmos/tx/v1beta1/tx"
 
-const rpc = "https://rpc.sentry-01.theta-testnet.polypore.xyz"
+const rpc = "rpc.sentry-01.theta-testnet.polypore.xyz:26657"
 
 const runAll = async (): Promise<void> => {
     const client = await StargateClient.connect(rpc)
     console.log("With client, chain id:", await client.getChainId(), ", height:", await client.getHeight())
     console.log(
         "Alice balances:",
-        await client.getAllBalances("cosmos17tvd4hcszq7lcxuwzrqkepuau9fye3dal606zf")
+        await client.getAllBalances("cosmos14l3r8sx2q650klet26efxrpltj0eev6n7d2szp")
     )
     const faucetTx: IndexedTx = (await client.getTx(
-        "540484BDD342702F196F84C2FD42D63FA77F74B26A8D7383FAA5AB46E4114A9B"
+        "9F50AB967D16BE4623F67A69FE85B7CB1DF88827E3960E5453FDFC3C2F019461"
     ))!
     console.log("Faucet Tx:", faucetTx)
     const decodedTx: Tx = Tx.decode(faucetTx.tx)
